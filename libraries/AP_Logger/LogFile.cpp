@@ -256,15 +256,16 @@ void AP_Logger::Write_Baro_instance(uint64_t time_us, uint8_t baro_instance, enu
     float ground_temp = baro.get_ground_temperature();
     const struct log_BARO pkt{
         LOG_PACKET_HEADER_INIT(type),
-        time_us       : time_us,
-        altitude      : baro.get_altitude(baro_instance),
-        pressure      : baro.get_pressure(baro_instance),
-        temperature   : (int16_t)(baro.get_temperature(baro_instance) * 100 + 0.5f),
-        climbrate     : climbrate,
-        sample_time_ms: baro.get_last_update(baro_instance),
-        drift_offset  : drift_offset,
-        ground_temp   : ground_temp,
-        healthy       : (uint8_t)baro.healthy(baro_instance)
+        time_us        : time_us,
+        altitude       : baro.get_altitude(baro_instance),
+        pressure       : baro.get_pressure(baro_instance),
+        ground_pressure: baro.get_ground_pressure(baro_instance),
+        temperature    : (int16_t)(baro.get_temperature(baro_instance) * 100 + 0.5f),
+        climbrate      : climbrate,
+        sample_time_ms : baro.get_last_update(baro_instance),
+        drift_offset   : drift_offset,
+        ground_temp    : ground_temp,
+        healthy        : (uint8_t)baro.healthy(baro_instance)
     };
     WriteBlock(&pkt, sizeof(pkt));
 }
