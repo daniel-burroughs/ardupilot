@@ -564,9 +564,12 @@ is bob we will attempt to checkout bob-AVR'''
                 "F4BY",
                 "mRoX21-777",
                 "mRoControlZeroF7",
+<<<<<<< HEAD
+=======
                 "mRoNexus",
                 "mRoPixracerPro",
                 "mRoControlZeroOEMH7",
+>>>>>>> 701ab83f01... HAL_ChibiOS: Added support for mRo ControlZero OEM H7 flight controller
                 "F35Lightning",
                 "speedybeef4",
                 "DrotekP3Pro",
