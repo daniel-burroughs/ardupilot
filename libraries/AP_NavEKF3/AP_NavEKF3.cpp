@@ -36,6 +36,7 @@
 #define FLOW_I_GATE_DEFAULT     300
 #define CHECK_SCALER_DEFAULT    100
 #define FLOW_USE_DEFAULT        1
+#define EKF3_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
 
 #elif APM_BUILD_TYPE(APM_BUILD_APMrover2)
 // rover defaults
@@ -603,6 +604,14 @@ const AP_Param::GroupInfo NavEKF3::var_info[] = {
     // @Range: 0 500
     // @Units: mGauss
     AP_GROUPINFO("MAG_EF_LIM", 56, NavEKF3, _mag_ef_limit, 50),
+
+    // @Param: MAG_FINAL_RESET_ALT
+    // @DisplayName: Final Reset Altitude
+    // @Description: Specifies the altitude for the final reset of the magnetometer fusion
+    // @User: Advanced
+    // @Range: 0 200
+    // @Units: m
+    AP_GROUPINFO("MAG_FINAL_RESET_ALT", 57, NavEKF3, _mag_final_reset_alt, EKF3_MAG_FINAL_RESET_ALT_DEFAULT),
 
     AP_GROUPEND
 };
@@ -1690,4 +1699,5 @@ void NavEKF3::getTimingStatistics(int8_t instance, struct ekf_timing &timing) co
         memset(&timing, 0, sizeof(timing));
     }
 }
+
 

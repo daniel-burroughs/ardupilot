@@ -54,9 +54,6 @@
 // target EKF update time step
 #define EKF_TARGET_DT 0.01f
 
-// mag fusion final reset altitude
-#define EKF2_MAG_FINAL_RESET_ALT 4.5f
-
 class AP_AHRS;
 
 class NavEKF2_core : public NavEKF_core_common
