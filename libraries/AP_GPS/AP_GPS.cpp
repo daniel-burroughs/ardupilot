@@ -828,6 +828,11 @@ void AP_GPS::update(void)
         state[GPS_BLENDED_INSTANCE] = state[primary_instance];
         _blended_antenna_offset = _antenna_offset[primary_instance];
     }
+    // Log the blended gps
+    if (should_log() || AP::ahrs().have_ekf_logging())
+    {
+        AP::logger().Write_GPS(GPS_MAX_RECEIVERS);
+    }
 #endif // GPS_BLENDED_INSTANCE
 
 #ifndef HAL_BUILD_AP_PERIPH
