@@ -381,6 +381,7 @@ struct PACKED log_BARO {
     uint64_t time_us;
     float   altitude;
     float   pressure;
+    float   ground_pressure;
     int16_t temperature;
     float   climbrate;
     uint32_t sample_time_ms;
@@ -1236,10 +1237,10 @@ struct PACKED log_Arm_Disarm {
 #define ACC_MULTS "FF000"
 
 // see "struct sensor" in AP_Baro.h and "Write_Baro":
-#define BARO_LABELS "TimeUS,Alt,Press,Temp,CRt,SMS,Offset,GndTemp,Health"
-#define BARO_FMT   "QffcfIffB"
-#define BARO_UNITS "smPOnsmO-"
-#define BARO_MULTS "F00B0C?0-"
+#define BARO_LABELS "TimeUS,Alt,Press,GndPress,Temp,CRt,SMS,Offset,GndTemp,Health"
+#define BARO_FMT   "QfffcfIffB"
+#define BARO_UNITS "smPPOnsmO-"
+#define BARO_MULTS "F000B0C?0-"
 
 #define ESC_LABELS "TimeUS,RPM,Volt,Curr,Temp,CTot"
 #define ESC_FMT   "QeCCcH"

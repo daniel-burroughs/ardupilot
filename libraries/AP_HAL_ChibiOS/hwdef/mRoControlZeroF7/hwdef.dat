@@ -58,13 +58,14 @@ PB0 SPEKTRUM_RC INPUT PULLUP GPIO(71)
 define HAL_GPIO_SPEKTRUM_RC 71
 
 # Order of I2C buses
-I2C_ORDER I2C1
+# I2C_ORDER I2C1
 
 # this board only has a single I2C bus so make it external
 define HAL_I2C_INTERNAL_MASK 0
 
 # OEM Only
 # I2C_ORDER I2C1, I2C2, I2C3
+I2C_ORDER I2C1 I2C2 I2C3 I2C4
 
 # order of UARTs (and USB)
 # UART4 GPS
@@ -160,12 +161,16 @@ PB8 I2C1_SCL I2C1
 PB9 I2C1_SDA I2C1
 
 # the 2nd I2C bus, OEM Only
-# PB10 I2C2_SCL I2C2
-# PB11 I2C2_SDA I2C2
+PF1 I2C2_SCL I2C2
+PF0 I2C2_SDA I2C2
 
 # the 3nd I2C bus, OEM Only
-# PB6 I2C4_SCL I2C4
-# PB7 I2C4_SDA I2C4
+PH7 I2C3_SCL I2C3
+PH8 I2C3_SDA I2C3
+
+# the 4th I2C bus, OEM Only
+PF14 I2C4_SCL I2C4
+PF15 I2C4_SDA I2C4
 
 # Now setup the pins for the microSD card, if available.
 PC8 SDMMC_D0 SDMMC1

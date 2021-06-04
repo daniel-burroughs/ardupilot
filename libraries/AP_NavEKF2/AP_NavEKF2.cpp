@@ -37,6 +37,7 @@
 #define FLOW_I_GATE_DEFAULT     300
 #define CHECK_SCALER_DEFAULT    100
 #define FLOW_USE_DEFAULT        1
+#define EKF2_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
 
 #elif APM_BUILD_TYPE(APM_BUILD_APMrover2)
 // rover defaults
@@ -581,6 +582,15 @@ const AP_Param::GroupInfo NavEKF2::var_info[] = {
     // @Units: Hz
     // @RebootRequired: False
     AP_GROUPINFO("HRT_FILT", 53, NavEKF2, _hrt_filt_freq, 2.0f),
+
+    // @Param: MAG_RST_ALT
+    // @DisplayName: Final Reset Altitude
+    // @Description: Specifies the altitude for the final reset of the magnetometer fusion
+    // @User: Advanced
+    // @Range: 0 200
+    // @Units: m
+    AP_GROUPINFO("MAG_RST_ALT", 54, NavEKF2, _mag_final_reset_alt, EKF2_MAG_FINAL_RESET_ALT_DEFAULT),
+
 
     AP_GROUPEND
 };
