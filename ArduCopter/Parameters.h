@@ -386,6 +386,11 @@ public:
         k_param_throw_altitude_min,
         k_param_throw_altitude_max,
 
+
+        //HF-Mod
+        // 400 Block : HF Parameters
+        k_param_landing_xy_scale_factor = 402,
+
         // the k_param_* space is 9-bits in size
         // 511: reserved
     };
@@ -476,6 +481,11 @@ public:
     AP_Float                acro_balance_roll;
     AP_Float                acro_balance_pitch;
 #endif
+
+    //HF-mod
+    // HF Parameters
+    AP_Float                landing_xy_scale_factor;
+
 
 #if MODE_ACRO_ENABLED == ENABLED
     // Acro parameters
