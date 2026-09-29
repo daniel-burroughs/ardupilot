@@ -40,6 +40,9 @@
 #define CHECK_SCALER_DEFAULT    100
 #define FLOW_USE_DEFAULT        1
 #define WIND_P_NSE_DEFAULT      0.2
+//HF-Mod
+#define EKF3_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
+
 
 #elif APM_BUILD_TYPE(APM_BUILD_Rover)
 // rover defaults
@@ -66,6 +69,9 @@
 #define CHECK_SCALER_DEFAULT    100
 #define FLOW_USE_DEFAULT        1
 #define WIND_P_NSE_DEFAULT      0.1
+//HF-Mod
+#define EKF3_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
+
 
 #elif APM_BUILD_TYPE(APM_BUILD_ArduPlane)
 // plane defaults
@@ -92,6 +98,8 @@
 #define CHECK_SCALER_DEFAULT    150
 #define FLOW_USE_DEFAULT        2
 #define WIND_P_NSE_DEFAULT      0.1
+//HF-Mod
+#define EKF3_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
 
 #else
 // build type not specified, use copter defaults
@@ -118,6 +126,9 @@
 #define CHECK_SCALER_DEFAULT    100
 #define FLOW_USE_DEFAULT        1
 #define WIND_P_NSE_DEFAULT      0.1
+//HF-Mod
+#define EKF3_MAG_FINAL_RESET_ALT_DEFAULT 4.5f
+
 
 #endif // APM_BUILD_DIRECTORY
 
@@ -620,6 +631,17 @@ const AP_Param::GroupInfo NavEKF3::var_info[] = {
     AP_GROUPINFO("GSF_USE_MASK", 58, NavEKF3, _gsfUseMask, 3),
 
     // 59 was GSF_DELAY which was never released in a stable version
+
+    // HF-Mod
+    // Line 622
+    // @Param: MAG_RST_ALT
+    // @DisplayName: Final Reset Altitude
+    // @Description: Specifies the altitude for the final reset of the magnetometer fusion
+    // @User: Advanced
+    // @Range: 0 200
+    // @Units: m
+    AP_GROUPINFO("MAG_RST_ALT", 59, NavEKF3, _mag_final_reset_alt, EKF3_MAG_FINAL_RESET_ALT_DEFAULT),
+
 
     // @Param: GSF_RST_MAX
     // @DisplayName: Maximum number of resets to the EKF-GSF yaw estimate allowed
