@@ -614,7 +614,14 @@ AP_GPS_SBF::process_message(void)
 #if GPS_MOVING_BASELINE
             // copy the baseline data as a yaw source
             if (option_set(AP_GPS::DriverOptions::SBF_UseBaseForYaw)) {
-                calculate_moving_base_yaw(temp.info.Azimuth * 0.01f + 180.0f,
+
+                //HF-mod
+//                calculate_moving_base_yaw(temp.info.Azimuth * 0.01f + 180.0f,
+//                                          Vector3f(temp.info.DeltaNorth, temp.info.DeltaEast, temp.info.DeltaUp).length(),
+//                                          -temp.info.DeltaUp);
+
+
+                calculate_moving_base_yaw(temp.info.Azimuth * 0.01f,
                                           Vector3f(temp.info.DeltaNorth, temp.info.DeltaEast, temp.info.DeltaUp).length(),
                                           -temp.info.DeltaUp);
             }
