@@ -12,6 +12,7 @@
 // @Field: I: barometer sensor instance number
 // @Field: Alt: calculated altitude
 // @Field: Press: measured atmospheric pressure
+// @Field: GndPress: measured ground pressure
 // @Field: Temp: measured atmospheric temperature
 // @Field: CRt: derived climb rate from primary barometer
 // @Field: SMS: time last sample was taken
@@ -24,6 +25,7 @@ struct PACKED log_BARO {
     uint8_t instance;
     float   altitude;
     float   pressure;
+    float   ground_pressure;
     int16_t temperature;
     float   climbrate;
     uint32_t sample_time_ms;
@@ -48,6 +50,8 @@ struct PACKED log_BARD {
     float dyn_pressure_z;
 };
 
+//HF-Mod
+/*
 #define LOG_STRUCTURE_FROM_BARO                                         \
     { LOG_BARO_MSG, sizeof(log_BARO),                                   \
             "BARO",                                                     \
@@ -55,6 +59,25 @@ struct PACKED log_BARD {
             "TimeUS," "I," "Alt," "Press," "Temp," "CRt," "SMS," "Offset," "GndTemp," "Health", \
             "s"       "#"  "m"    "P"      "O"     "n"    "s"    "m"       "O"        "-", \
             "F"       "-"  "0"    "0"      "B"     "0"    "C"    "?"       "0"        "-", \
+            true                                                        \
+            },                                                          \
+    { LOG_BARD_MSG, sizeof(log_BARD),                                   \
+            "BARD",                                                     \
+            "Q"       "B"  "fff", \
+            "TimeUS," "I," "DynPrX,DynPrY,DynPrZ", \
+            "s"       "#"  "PPP", \
+            "F"       "-"  "000", \
+            true                                                        \
+            },
+*/
+
+#define LOG_STRUCTURE_FROM_BARO                                         \
+    { LOG_BARO_MSG, sizeof(log_BARO),                                   \
+            "BARO",                                                     \
+            "Q"       "B"  "f"    "f"      "f"          "c"     "f"    "I"    "f"       "f"        "B", \
+            "TimeUS," "I," "Alt," "Press," "GndPress,"   "Temp," "CRt," "SMS," "Offset," "GndTemp," "Health", \
+            "s"       "#"  "m"    "P"      "P"          "O"     "n"    "s"    "m"       "O"        "-", \
+            "F"       "-"  "0"    "0"      "0"          "B"     "0"    "C"    "?"       "0"        "-", \
             true                                                        \
             },                                                          \
     { LOG_BARD_MSG, sizeof(log_BARD),                                   \
