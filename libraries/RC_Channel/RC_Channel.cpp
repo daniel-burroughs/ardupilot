@@ -291,6 +291,14 @@ bool RC_Channel::update(void)
         return false;
     }
 
+    //HF-Mod
+    //This feels like the wrong place to do this, but I want to be sure that both angle and range control outputs are fixed
+    if((ch_in == 0 || ch_in == 1) && 
+        (radio_in > radio_max.get() || radio_in < radio_min.get()))
+    {
+        radio_in = (radio_max.get() + radio_min.get()) / 2;
+    }
+
     if (type_in == ControlType::RANGE) {
         control_in = pwm_to_range();
     } else {
